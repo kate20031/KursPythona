@@ -1,3 +1,10 @@
+    # "Napisz program wczytujący plik `.ipynb` (tak naprawdę w formacie json), 
+    # którego nazwa zostanie podana jako argument wywołania programu. 
+    # Po wczytaniu należy usunąć policzone wartości ze wszystkich komórek typu \"code\" (z użyciem `map`), 
+    # a także kod z kratek typu \"code\" znajdujących się bezpośrednio po kratkach typu \"markdown\" zawierających w pierwszej linii ciąg `# Ćwiczenie`.
+    # Do tego drugiego usuwania użyj `reduce` z odpowiednią strukturą \"zbierającą\". Po usunięciu należy zapisać całość do nowego pliku `.ipynb`.
+    # Jego nazwę utwórz poprzez przekształcenie nazwy piku wejściowego, np. `plik.ipynb` -> `plik.czysty.ipynb`. Plik wynikowy powinien dać się otworzyć w Jupyter Notebook albo Jupyter Lab )"
+
 import json
 from functools import reduce
 
