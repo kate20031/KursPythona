@@ -1,0 +1,97 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "This is an extension of the task from first part of classes.\n",
+    "I recommend using argparse to read user-defined input.\n",
+    "\n",
+    "Part A:\n",
+    "Create folders named: January, ... , December\n",
+    "Create subfolders named: Monday, ... , Sunday\n",
+    "In every subfolder create 2 subfolders: morning, evening\n",
+    "In every subsubfolder create 'Solutions.csv' file.\n",
+    "The 'Solutions.csv' should consist of two lines:\n",
+    "\" Model; Output value; Time of computation; \"\n",
+    "\" A ; 17 ; 465s; \"\n",
+    "\n",
+    "The first line is always the same.\n",
+    "The second one should be generated randomly (x in {A,B,C}, 0-1000, 0-1000s)\n",
+    "\n",
+    "Part B:\n",
+    "Output the sum of \"Time of computation\" for the model A.\n",
+    "Assume that you do not know how many folders and subfolders there are."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "import os\n",
+    "import random\n",
+    "\n",
+    "months = [\"January\", \"February\", \"March\", \"April\", \"May\", \"June\", \"July\", \"August\", \"September\", \"October\", \"November\", \"December\"]\n",
+    "days_of_week = [\"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\", \"Sunday\"]\n",
+    "time = [\"morning\", \"evening\"]\n",
+    "\n",
+    "for month in months:\n",
+    "    path = os.path.join(os.getcwd(),'Python_lab', month)\n",
+    "    \n",
+    "    if not os.path.exists(path):\n",
+    "        os.mkdir(path)\n",
+    "        \n",
+    "    for day in days_of_week:\n",
+    "        path2 = os.path.join(path, day)\n",
+    "        \n",
+    "        if not os.path.exists(path2):\n",
+    "            os.mkdir(path2)\n",
+    "            \n",
+    "        for t in time:\n",
+    "            path3 = os.path.join(path2, t)\n",
+    "            \n",
+    "            if not os.path.exists(path3):\n",
+    "                os.mkdir(path3)\n",
+    "\n",
+    "            filename = 'Solutions' + '.csv'\n",
+    "            \n",
+    "            with open(os.path.join(path3, filename), 'w') as temp_file:\n",
+    "                temp_file.write(\" Model; Output value; Time of computation; \" + \"\\n\")\n",
+    "            with open(os.path.join(path3, filename), 'a') as temp_file:    \n",
+    "                temp_file.write(\" \" + random.choice(['A', 'B', 'C']) + \" ; \" + str(random.randint(0, 1000)) + \" ; \" + str(random.randint(0, 1000)))\n",
+    "                \n",
+    "        \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.10.12"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
