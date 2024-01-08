@@ -1,0 +1,5 @@
+Zadanie dnia
+Rozszerz klasę ułamek z poprzedniego scenariusza o możliwość zapisywania i
+odczytywania ułamka z pliku tekstowego. Dopisz do niej testy parametryzowane, 
+testy zapisywania i wczytywania ułamka z pliku tekstowego.
+Zrealizuj zadanie za pomocą mockowania i wykorzystując fixture.
