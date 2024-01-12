@@ -1,0 +1,28 @@
+import requests
+from bs4 import BeautifulSoup
+import csv
+from urllib.parse import urljoin
+
+url = "https://www.mimuw.edu.pl/aktualnosci"
+
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+
+events = soup.find_all('li', class_='dontsplit')
+event_list = []
+
+for event in events:
+    title = event.find('a').text
+    href = event.find('a')['href']
+    date = event.find(class_='date-display-single').text
+    event_dict = {'Tytuł': title, 'Href': urljoin(url, href), 'Data': date}
+    event_list.append(event_dict)
+
+with open('events.csv', 'w', newline='', encoding='utf-8') as myFile:
+    writer = csv.DictWriter(myFile, fieldnames=['Tytuł', 'Href', 'Data'])
+    writer.writeheader()
+    writer.writerows(event_list)
+
+for i in range(0, 5):
+    event_dict = event_list[i]
+    print(f'Tytuł: {event_dict["Tytuł"]}, Href: {event_dict["Href"]}, Data: {event_dict["Data"]}\n {"=" * 170}')
